@@ -9,19 +9,17 @@ var user = require('./user');
 
 var app = express();
 
+// 设定模板
 app.engine('hbs', exphbs({
-  // layoutsDir: 'views',
   defaultLayout: 'main',
-  extname: '.hbs',
-  helpers: {
-    static: function(name) {
-      return require('./lib/static').map(name);
-    }
-  }
+  extname: '.hbs'
 }));
+
+//设定模板路径
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 
+//body解析
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
